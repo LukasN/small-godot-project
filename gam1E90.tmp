@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3tl5pnt1bbg1"]
+
+[ext_resource type="PackedScene" uid="uid://dnxx3v8du1h2" path="res://player.tscn" id="1_8ra5a"]
+[ext_resource type="Script" path="res://game.gd" id="1_prjay"]
+[ext_resource type="PackedScene" uid="uid://whvw7c0bybm1" path="res://tree.tscn" id="2_06l4a"]
+[ext_resource type="PackedScene" uid="uid://dcxftdv3wgusy" path="res://mob.tscn" id="2_jjcq4"]
+
+[sub_resource type="Curve2D" id="Curve2D_532bo"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -739, -184, 0, 0, 0, 0, 1998, -189, 0, 0, 0, 0, 2061, 1242, 0, 0, 0, 0, -731, 1230, 0, 0, 0, 0, -749, 438, 0, 0, 0, 0, -739, -184)
+}
+point_count = 6
+
+[node name="Game" type="Node2D"]
+position = Vector2(387, 30)
+script = ExtResource("1_prjay")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_bottom = 0.255556
+offset_top = -1.0
+offset_right = 2293.0
+offset_bottom = 866.0
+metadata/_edit_use_anchors_ = true
+
+[node name="player" parent="." instance=ExtResource("1_8ra5a")]
+unique_name_in_owner = true
+position = Vector2(184, 288)
+
+[node name="Mob" parent="." instance=ExtResource("2_jjcq4")]
+position = Vector2(793, 423)
+
+[node name="tree" parent="." instance=ExtResource("2_06l4a")]
+position = Vector2(-153, 187)
+
+[node name="tree2" parent="." instance=ExtResource("2_06l4a")]
+position = Vector2(154, 611)
+
+[node name="tree3" parent="." instance=ExtResource("2_06l4a")]
+position = Vector2(1203, 75)
+
+[node name="tree4" parent="." instance=ExtResource("2_06l4a")]
+position = Vector2(1137, 602)
+
+[node name="tree5" parent="." instance=ExtResource("2_06l4a")]
+position = Vector2(1717, 472)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_532bo")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(-739, -184)
+rotation = -0.00182682
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

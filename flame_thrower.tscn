@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://24cecloqmkxt"]
+
+[ext_resource type="Script" path="res://flame_thrower.gd" id="1_8gtvh"]
+[ext_resource type="Texture2D" uid="uid://d1fcpcb3g3eeq" path="res://flame_thrower/flame_thrower.png" id="1_ycrng"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xwdb3"]
+radius = 600.0
+
+[node name="flame_thrower" type="Area2D"]
+rotation = -0.0167735
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_8gtvh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.57087
+shape = SubResource("CircleShape2D_xwdb3")
+
+[node name="weapon_pivot" type="Marker2D" parent="."]
+rotation = 1.57087
+
+[node name="FlameThrower" type="Sprite2D" parent="weapon_pivot"]
+position = Vector2(5.99993, -1.00044)
+rotation = -1.67566
+scale = Vector2(0.567568, 0.394231)
+texture = ExtResource("1_ycrng")
+
+[node name="flame_spawn" type="Marker2D" parent="weapon_pivot/FlameThrower"]
+unique_name_in_owner = true
+position = Vector2(48.5123, -134.527)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
+autostart = true
+
+[node name="flames_out" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="flames_out" to="." method="_on_flames_out_timeout"]

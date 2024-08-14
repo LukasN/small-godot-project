@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0fqd1xk4tes0"]
+
+[ext_resource type="Script" path="res://pickup_gun.gd" id="1_xiwhx"]
+[ext_resource type="Texture2D" uid="uid://jsj2ehsl00if" path="res://item-pickup/present.png" id="2_qk32h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0p6g"]
+size = Vector2(90.5, 98.5)
+
+[node name="pickup_item" type="Area2D"]
+script = ExtResource("1_xiwhx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6.75, -20.75)
+shape = SubResource("RectangleShape2D_k0p6g")
+
+[node name="Present" type="Sprite2D" parent="."]
+position = Vector2(3.99998, -19)
+scale = Vector2(0.0955, 0.1235)
+texture = ExtResource("2_qk32h")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

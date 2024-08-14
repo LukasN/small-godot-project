@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://fv4vyhi16tdl"]
+
+[ext_resource type="Script" path="res://timer.gd" id="1_2dm1a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_geek6"]
+font_color = Color(0.0235294, 0.113725, 0.329412, 1)
+
+[node name="timer" type="Node"]
+script = ExtResource("1_2dm1a")
+
+[node name="timerLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 23.0
+text = "00:00"
+label_settings = SubResource("LabelSettings_geek6")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
